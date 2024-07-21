@@ -1,0 +1,185 @@
+# (c) Silvaco Inc., 2022
+go atlas
+mesh three.d
+
+
+
+
+#mesh space.mult=1.0
+
+x.mesh loc=-0.01    spac=0.001
+x.mesh loc=0.0    spac=0.0001
+x.mesh loc=0.01    spac=0.001
+x.mesh loc=0.02    spac=0.0001
+x.mesh loc=0.03    spac=0.001
+
+y.mesh loc=-0.0045  spac=0.001
+y.mesh loc=-0.0035  spac=0.001
+y.mesh loc=-0.001  spac=0.001
+y.mesh loc=0  spac=0.001
+y.mesh loc=0.01  spac=0.001
+
+z.mesh loc=-0.0045  spac=0.001
+z.mesh loc=-0.0035  spac=0.0001
+z.mesh loc=-0.001  spac=0.001
+z.mesh loc=0.0  spac=0.0001
+z.mesh loc=0.01  spac=0.001
+z.mesh loc=0.011  spac=0.001
+z.mesh loc=0.0135  spac=0.0001
+z.mesh loc=0.0145  spac=0.001
+
+
+
+# SECTION 2: Structure Specification
+
+# channel
+
+
+region num=1  x.min=0.000  x.max=0.02 y.min=0.000 y.max=0.010  z.min=0.00 z.max=0.010 material=Si
+
+#Silicon
+
+#region num=2  x.min=0.01  x.max=0.03 y.min=0.0035 y.max=0.0135 z.min=0.0035 z.max=0.0135  material=Silicon
+#region num=2  x.min=0.00  x.max=0.022 y.min=0.025 y.max=0.028 material=Silicon
+#region num=2  x.min=0.00  x.max=0.068 y.min=0.028 y.max=0.053 material=Silicon
+#region num=2  x.min=0.00  x.max=0.020 y.min=0.010 y.max=0.015 material=Silicon
+#region num=2  x.min=0.022  x.max=0.026 y.min=0.00 y.max=0.0286 material=Silicon
+
+#Source
+region num=2  x.min=-0.01  x.max=0.0 y.min=0.00 y.max=0.010  z.min=0.0 z.max=0.010  material=Si
+
+#Drain
+region num=3  x.min=0.02 x.max=0.03  y.min=0.00 y.max=0.010   z.min=0.00 z.max=0.010 material=Si
+
+
+#Oxide
+region num=4 x.min=0.0  x.max=0.020 y.min=0.0  y.max=0.01  z.min=0.01 z.max=0.011 material=SiO2
+region num=4 x.min=0.0  x.max=0.020 y.min=0.0  y.max=0.01  z.min=-0.001 z.max=0.0 material=SiO2
+
+region num=4 x.min=0.0  x.max=0.020 y.min=-0.001  y.max=0.0  z.min=-0.001 z.max=0.011 material=SiO2
+
+
+region num=5 x.min=0.0  x.max=0.020 y.min=-0.001  y.max=0.01  z.min=0.011 z.max=0.0135    material=HfO2
+region num=5 x.min=0.0  x.max=0.020 y.min=-0.001  y.max=0.01  z.min=-0.0035 z.max=-0.001  material=HfO2
+
+region num=5 x.min=0.0  x.max=0.020 y.min=-0.0035  y.max=-0.001  z.min=-0.0035 z.max=0.0135  material=HfO2
+
+
+
+#region num=5 x.min=0.0  x.max=0.02 y.min=0.00  y.max=0.01  z.min=0.0025 z.max=0.0035  material=SiO2
+#region num=5 x.min=0.0  x.max=0.02 y.min=0.00  y.max=0.011  z.min=0.0135 z.max=0.0145  material=SiO2
+#region num=5 x.min=0.0  x.max=0.02 y.min=0.01  y.max=0.011  z.min=0.0035 z.max=0.0135  material=SiO2
+
+#Cavity
+#region num=8 x.min=0.044  x.max=0.064  y.min=0.00 y.max=0.025 material=pel
+
+#gate
+
+#electrodes
+
+elec   num=1  name=source  x.min=-0.01 x.max=-0.01  y.min=0.0  y.max=0.01  z.min=0.0 z.max=0.01
+elec   num=2  name=drain   x.min=0.03 x.max=0.030  y.min=0.0  y.max=0.01 z.min=0.00 z.max=0.01
+
+elec  num=3   name=gate    x.min=0.0  x.max=0.010 y.min=-0.0045  y.max=0.01  z.min=0.0135  z.max=0.0135 
+elec  num=3   name=gate    x.min=0.0  x.max=0.010 y.min=-0.0045  y.max=0.01  z.min=-0.0035 z.max=-0.0035 
+
+elec num=3    name=gate    x.min=0.0  x.max=0.010 y.min=-0.0035 y.max=-0.0035 z.min=-0.0035 z.max=0.0135 
+
+
+elec  num=4   name=gate1    x.min=0.010  x.max=0.020 y.min=-0.0045  y.max=0.01  z.min=0.0135  z.max=0.0135 
+elec  num=4   name=gate1    x.min=0.010  x.max=0.020 y.min=-0.0045  y.max=0.01  z.min=-0.0035 z.max=-0.0035 
+
+elec num=4    name=gate1    x.min=0.010  x.max=0.020 y.min=-0.0035 y.max=-0.0035 z.min=-0.0035 z.max=0.0135 
+
+
+
+#doping 
+
+doping    uniform conc=1e16  n.type  region=1
+doping    uniform conc=1e20  n.type  region=2
+
+doping    uniform conc=1e20  n.type  region=3
+#
+
+
+#contacts
+
+contact   name=source  neutral
+contact   name=drain   neutral
+contact   name=gate   workfunction=4.7
+contact   name=gate1   workfunction=5.2  common=gate
+#contact   name=gate2   workfunction=4.2
+
+solve init
+solve vgate=0
+solve vdrain=0
+struct outf=str1lg50.str
+tonyplot3d str1lg50.str
+
+
+
+
+# SECTION: Material Models
+
+#models print
+#models qtunn.dir=ydir bbt.nonlocal temperature=300 \
+fermi ni.fermi srh auger cvt \
+fldmob conmob bgn print
+
+#models qtunn.dir=ydir bbt.nonlocal temperature=300 \
+fermi ni.fermi srh auger cvt \
+fldmob conmob bgn print
+#
+models print conmob fldmob srh cvt boltzman temperature=300 
+ 
+material taurel.el=1.e-12 taumob.el=1.e-12 vsat=1.e7
+
+
+#method carriers=1 electrons
+#
+mobility bn.cvt=4.75e7 bp.cvt=9.925e6 cn.cvt=1.74e5 cp.cvt=8.842e5 taun.cvt=0.125 taup.cvt=0.0317 gamn.cvt=2.5 gamp.cvt=2.2 mu0n.cvt=52.2 mu0p.cvt=44.9 mu1n.cvt=43.4 mu1p.cvt=29.0 mumaxn.cvt=1417.0 mumaxp.cvt=470.5 crn.cvt=9.68e16 crp.cvt=2.23e17 csn.cvt=3.43e20 csp.cvt=6.10e20 alphn.cvt=0.680 alphp.cvt=0.71 betan.cvt=2.0 betap.cvt=2.0 pcn.cvt=0.0 pcp.cvt=0.23e16 deln.cvt=5.82e14 delp.cvt=2.0546e14 
+
+
+
+# Specify method used for calculation
+
+method newton
+method    newton itlimit=25 trap atrap=0.5 maxtrap=4 autonr nrcriterion=0.1 \
+        tol.time=0.005 dt.min=1e-25
+        
+
+#
+solve init
+#solve vdrain=0.0 name=drain
+solve vdrain=0.0 vstep=0.1  vfinal=0.8 name=drain
+solve vsource=0.0
+
+
+
+#log file for id vg characteristics
+
+log outf=bio1kesItryI02ppm.log
+
+#solving for different gate voltages
+#solve vgate=0 name=gate
+
+solve vgate=0 vstep=0.05 vfinal=2 name=gate
+
+
+output e.field recombination band.param con.band val.band e.mobility ex.velocity \
+	ey.velocity e.velocity impact.i flowlines charge j.drift j.total j.diffusion
+
+save outf=bio1kesItryI02ppm.str
+
+extract name="vt" xintercept(maxslope(curve(v."gate",i."drain"))) \
+- ave(v."drain")/2.0
+extract name="subvt" \
+1.0/slope(maxslope(curve(v."gate",log10(i."drain"))))
+
+tonyplot3d bio1kesItryI02ppm.str  
+tonyplot bio1kesItryI02ppm.log
+
+ # Now extract some design parameters...
+
+ quit
+
